@@ -1,0 +1,27 @@
+{
+  "name": "hotel_data_preview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "preinstall" : "npm install gulp bower -g",
+    "postinstall" : "npm install && bower install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Petr Juna",
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^1.2.0",
+    "gulp": "^3.8.11",
+    "gulp-clean": "^0.3.1",
+    "gulp-include-source": "0.0.5",
+    "gulp-jade": "^1.0.1",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-shell": "^0.4.2",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-typescript": "^2.8.0",
+    "gulp-webserver": "^0.9.1",
+    "typescript": "^1.5.3"
+  }
+}

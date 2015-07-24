@@ -1,0 +1,76 @@
+.row
+    .col-xs-12
+        nav.navbar.navbar-default(role='navigation')
+          .navbar-brand Find your hotel
+          .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+          .collapse.navbar-collapse.navbar-ex1-collapse
+              .navbar-text Sort by
+              ul.nav.nav-pills.navbar-nav
+                  li.navbar-btn
+                      button.btn.btn-default(href='#', ng-click="hotel.order = 'Distance'")
+                          span.glyphicon.glyphicon-pushpin &nbsp;
+                          span.glyphicon(ng-class="{ 'glyphicon-triangle-bottom' : hotel.currOrder('Distance'), 'glyphicon-triangle-top' : !hotel.currOrder('Distance')  }")
+                  li &nbsp;
+                  li.navbar-btn
+                      button.btn.btn-default(type="button", ng-click="hotel.order = 'Stars'")
+                          span.glyphicon.glyphicon-star &nbsp;
+                          span.glyphicon(ng-class="{ 'glyphicon-triangle-bottom' : hotel.currOrder('Stars'), 'glyphicon-triangle-top' : !hotel.currOrder('Stars')  }")
+                  li &nbsp;
+                  li.navbar-btn
+                      button.btn.btn-default(ng-click="hotel.order = 'MinCost'")
+                          span.glyphicon.glyphicon-piggy-bank &nbsp;
+                          span.glyphicon(ng-class="{ 'glyphicon-triangle-bottom' : hotel.currOrder('MinCost'), 'glyphicon-triangle-top' : !hotel.currOrder('MinCost')  }")
+                  li &nbsp;
+                  li.navbar-btn
+                      button.btn.btn-default(ng-click="hotel.order = 'UserRatingTitle'")
+                          span.glyphicon.glyphicon-thumbs-up &nbsp;
+                          span.glyphicon(ng-class="{ 'glyphicon-triangle-bottom' : hotel.currOrder('UserRatingTitle'), 'glyphicon-triangle-top' : !hotel.currOrder('UserRatingTitle')  }")
+                  li &nbsp;
+                  li.navbar-btn
+                      button.btn.btn-default( ng-click="hotel.order = 'UserRating'")
+                          span.glyphicon.glyphicon-user &nbsp;
+                          span.glyphicon(ng-class="{ 'glyphicon-triangle-bottom' : hotel.currOrder('UserRating'), 'glyphicon-triangle-top' : !hotel.currOrder('UserRating')  }")
+                div.navbar-right.hidden-sm.hidden-xs
+                    form.navbar-form(role='search', name="searchForm", ng-submit="hotel.filter = [searchForm.searchType, searchForm.searchInput]")
+                      .form-group
+                        input.form-control(type='text', placeholder='Search', ng-model="searchForm.searchInput", name="search")
+                        span &nbsp;
+                        select.form-control.hidden-md(ng-model="searchForm.searchType", ng-options="option.id as option.title for option in hotel.searchOptions track by option.id", placeholder="Filter")
+                            option(value="") Select type
+                        span &nbsp;
+                        button.btn(type='submit', ng-disable="searchForm.searchInput.$invalid || searchForm.searchInput.$pristine", ng-class="{ 'btn-primary' : searchForm.$dirty, 'btn-default' : searchForm.$pristine }") Submit
+                        span.hidden-md &nbsp;
+                        button.btn.btn-danger.hidden-md(ng-click='hotel.reset()') Reset
+
+.row
+    .col-xs-12
+        div(infinite-scroll="hotel.limit = 20", infinite-scroll-distance="1")
+            .row
+                  .col-xs-12.col-sm-6.col-md-6.col-lg-6(ng-repeat="entity in hotel.query | orderBy: Name: true | limitTo:hotel.limit track by $index", style="height:")
+                      .media(style="margin-bottom:30px; padding:20px; border:1px solid #DDD; min-height:160px;")
+                          .row
+                              .col-xs-12.col-sm-12.col-md-4.col-lg-4
+                                  img.img-thumbnail.img-responsive(src='{{ entity.ImageUrl }}', style="width:700px;")
+                                  div.visible-sm.visible-xs &nbsp;
+                              .col-xs-12.col-sm-12.col-md-8.col-lg-8
+                                  .media-body
+                                      h4.media-heading
+                                       a(href="#") {{ entity.Name }}
+                                      br
+                                      p
+                                        strong Stars: &nbsp;
+                                        span.glyphicon.glyphicon-star(ng-repeat="star in hotel.makeRange(entity.Stars)")
+                                      p
+                                        strong Rating: {{ entity.UserRating }} &nbsp; | &nbsp;
+                                        span {{ entity.UserRatingTitle }} &nbsp;
+                                        span.hidden-xs | &nbsp; Rated by {{ entity.UserRatingCount }}
+                                      div.pull-left
+                                          button.btn.btn-success Find more
+                                      div.pull-right
+                                        span From &nbsp;
+                                        span.h2 {{ entity.MinCost | number:0 }}

@@ -1,0 +1,30 @@
+{
+  "name": "hotel_data_preview",
+  "version": "0.0.0",
+  "authors": [
+    "Petr Juna"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular-mocks": "~1.4.3",
+    "ui-router": "~0.2.15",
+    "angular-resource": "~1.4.3",
+    "requirejs": "~2.1.19",
+    "requirejs-plugins": "~1.0.3",
+    "angular-route": "~1.4.3",
+    "ngInfiniteScroll": "~1.2.1",
+    "bootstrap": "~3.3.5",
+    "require-css": "~0.1.8",
+    "ui-select": "*",
+    "angular-sanitize": "~1.4.3",
+    "angular-ui-select": "~0.12.0",
+    "angular-strap": "~2.3.1"
+  }
+}
