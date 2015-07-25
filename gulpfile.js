@@ -19,3 +19,15 @@ gulp.task('production', []);
 gulp.task('default', [
     'development'
 ]);
+
+var server = require('gulp-webserver');
+
+gulp.task('server', function() {
+    gulp.src('dev')
+        .pipe(server({
+            livereload: true,
+            fallback: 'index.html',
+            host: Process.env.HOST  ||  'localhost',
+            port: Process.env.PORT || 80
+        }));
+});

@@ -4,16 +4,17 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "preinstall" : "npm install gulp bower -g",
-    "postinstall" : "npm install && bower install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preinstall": "npm install -g gulp bower tsd",
+    "postinstall": "bower install && tsd reinstall -so && gulp default",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "Petr Juna",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "del": "^1.2.0",
-    "gulp": "^3.8.11",
-    "gulp-clean": "^0.3.1",
+    "express": "^4.13.1",
+    "gulp": "^3.9.0",
     "gulp-include-source": "0.0.5",
     "gulp-jade": "^1.0.1",
     "gulp-load-plugins": "^0.10.0",
@@ -21,7 +22,7 @@
     "gulp-shell": "^0.4.2",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-typescript": "^2.8.0",
-    "gulp-webserver": "^0.9.1",
+    "require-dir": "^0.3.0",
     "typescript": "^1.5.3"
   }
 }
