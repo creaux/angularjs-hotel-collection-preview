@@ -12,7 +12,7 @@ Application is not optimize for distribution run! It's just development preview 
 
 Application is presenting not only presentation of data but as well framework agnostic modular architecture.
 
-There is only one rest service. That simply serving all data at once. 
+There is only one rest service. That simply serving all data at once. This consume a lot of time for the first load.
 
 This is not optimum! We should have usually application that serving data in bundles on more than one request that's what makes RESTfull services strong. This is just simply serving one big bundle without pager for preview purpose.
 
